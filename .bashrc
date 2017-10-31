@@ -60,7 +60,7 @@ echo "end of script"
 #Setting a function called debugtoggle.
 #This script will toggle debug mode on and off using the wp-config.php file.
 function debugtoggle () (
-
+################################# still in work. using sed instead of removing backup and replacing edited config.
 #Making sure config is here
 if [ -e wp-config.php ]
 then
@@ -73,11 +73,14 @@ then
 echo "debug is currently on..."
 echo "moving original config back..."
 
-#here we replace the edited wp-config.php using the backup of the original file.
-cp wp-config.php.bak wp-config.php
+sed -i "/DEBUG/s/true/false/g" wp-config.php
 
-#Now lets remove the backup to keep files vanilla. 
-rm wp-config.php.bak
+#here we replace the edited wp-config.php using the backup of the original file.
+#cp wp-config.php.bak wp-config.php
+
+
+#Commenting the followings line with intention to always leave the  wp-config.php backup in place on the server.
+#rm wp-config.php.bak
 
 #Quick identification of wheter or not the current setting is set as true or false.
 DEBUG=$(grep -i "define( 'wp_debug" wp-config.php | cut -d\, -f2 | rev | cut -d' ' -f2 |rev)
