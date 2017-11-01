@@ -99,3 +99,8 @@ else
 echo "You are not in the install directory. Please run from install directory..."
 fi
 )
+
+
+#working on finding the absolute path of the wp-config.php file and returning only the exact file.
+#this will return ANY variations of wp-config.php such as wp-config.php.bak
+grep $USER /etc/passwd | cut -d\: -f6 | xargs find | grep "wp-config.php"
