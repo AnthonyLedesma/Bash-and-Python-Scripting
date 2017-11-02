@@ -18,10 +18,10 @@ function wpconfig() (
 USER=$(ls -lad | cut -d\  -f3)
 GROUP=$(ls -lad | cut -d\  -f4)
 DBNAME=$(cat wp-config.php | grep DB_NAME | cut -d\' -f4)
-DBUSER=$(cat wp-config.php | grep DB_USER | cut -d\' -f4)
-DBPASSWORD=$(cat wp-config.php | grep DB_PASSWORD | cut -d\' -f4)
-DBHOST=$(cat wp-config.php | grep DB_HOST | cut -d\' -f4 | rev | cut -d\: -f2 | rev)
-DBPORT=$(cat wp-config.php | grep DB_HOST | rev |cut -d\: -f1 | rev | cut -d\' -f1)
+DBUSER=$(grep -i 'DB_USER' wp-config.php | cut -d\' -f4)
+DBPASSWORD=$(grep -i 'DB_PASSWORD' wp-config.php | cut -d\' -f4)
+DBHOST=$(grep -i 'DB_HOST' wp-config.php | cut -d\' -f4 | rev | cut -d\: -f2 | rev)
+DBPORT=$(grep -i 'DB_HOST' wp-config.php | rev |cut -d\: -f1 | rev | cut -d\' -f1)
 PREFIX=$(grep -i 'table_prefix' wp-config.php | cut -d"'" -f2)
 
 #Connect to the MYSQL Server and search for the siteurl and homeurl and set them as variables to be called later.
