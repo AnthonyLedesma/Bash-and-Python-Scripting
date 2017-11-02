@@ -17,7 +17,7 @@ function wpconfig() (
 # Defining important variables.
 USER=$(ls -lad | cut -d\  -f3)
 GROUP=$(ls -lad | cut -d\  -f4)
-DBNAME=$(cat wp-config.php | grep DB_NAME | cut -d\' -f4)
+DBNAME=$(grep -i 'DB_NAME' wp-config.php | cut -d\' -f4)
 DBUSER=$(grep -i 'DB_USER' wp-config.php | cut -d\' -f4)
 DBPASSWORD=$(grep -i 'DB_PASSWORD' wp-config.php | cut -d\' -f4)
 DBHOST=$(grep -i 'DB_HOST' wp-config.php | cut -d\' -f4 | rev | cut -d\: -f2 | rev)
