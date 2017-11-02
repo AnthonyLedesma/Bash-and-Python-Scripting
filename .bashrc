@@ -103,4 +103,7 @@ fi
 
 #working on finding the absolute path of the wp-config.php file and returning only the exact file.
 #this will return ANY variations of wp-config.php such as wp-config.php.bak
-grep $USER /etc/passwd | cut -d\: -f6 | xargs find | grep "wp-config.php"
+#grep $USER /etc/passwd | cut -d\: -f6 | xargs find | grep "wp-config.php"
+
+#Below is the decided upon code which will query the apache configuration to determine the document root/ WP install directory
+grep -i "DocumentRoot " /etc/httpd/conf/httpd.conf | cut -d\" -f2
