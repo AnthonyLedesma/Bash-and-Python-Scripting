@@ -107,3 +107,11 @@ fi
 
 #Below is the decided upon code which will query the apache configuration to determine the document root/ WP install directory
 grep -i "DocumentRoot " /etc/httpd/conf/httpd.conf | cut -d\" -f2
+
+#Block of code for comparing one dir with another and NOT overwriting files but moving only new. 
+#false | cp -i ABSPATH/www/wp-content/* ABSPATH/www/test/ 
+#If this command is exceding the ARG_MAX then the command will kill iteself before finishing.
+#getconf ARG_MAX 
+#Here we have a sample of a loop that is intended to get around ARG_MAX limits.
+#for file in /src/*; do cp "$file" /dst/; done 
+
