@@ -115,3 +115,9 @@ grep -i "DocumentRoot " /etc/httpd/conf/httpd.conf | cut -d\" -f2
 #Here we have a sample of a loop that is intended to get around ARG_MAX limits.
 #for file in /src/*; do cp "$file" /dst/; done 
 
+#grep with regex match example. - Extracts IP addresses from access.log file located within the file system. 
+#-r recursive | file not specified - recurse to look for pattern in all locations.
+#-o Only show matches to pattern
+#-P Perl Regex Pattern | ^starts with | \d digit char | {1,3} ranging from 1 char to 3 chars. | \. matches dot character | * match 0 or more of previous char.
+#grep -roP "^\d{1,3}\.*\d{1,3}\.*\d{1,3}\.*\d{1,3}\.*"
+
