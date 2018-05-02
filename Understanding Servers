@@ -1,0 +1,61 @@
+Files/Directories
+1: make a directory
+- mkdir <dirname>
+2: delete a directory
+- rm -rf <dirname> (remember CWD | recursive force)
+3: move into a directory, and back out.
+- cd <dirname> + cd <.. up a level | ~ users home dir)
+4: rename a directory
+- cp -a <dirname> /parent/child/<newDirName>  (-a archive) | (-pr preserver file attributes, recursive copy)
+5: copy a directory (and all of its contents)
+- cp -pr ./<dirname>/ /parent/child/<newDirName>
+7: list files in a directory
+- ls 
+8: list all files, in "long" or "list" format using human readable sizes 
+- ls -la (list, all files)
+
+Users
+1: create a user
+- useradd <username>    |   https://www.centos.org/docs/5/html/5.1/Deployment_Guide/s2-users-add.html
+2: change that users password (or set it since it probably does not yet exist)
+- passwd <username>
+3: find a users user id 
+- awk -F':' '{ print $1 }' /etc/passwd/   OR cat /etc/passwd/
+
+Accessing internet resources
+1: download a file via http (into current directory)
+- curl -o /tmp/<filename.ext> 'https://en-ca.wordpress.org/wordpress-4.9.5-en_CA.zip'
+2: download a file using ftp (into current directory)
+- ftp domain.com
+- username + password
+- ftp> ls
+- ftp> cd directory
+- lcd /home/user/yourdirectoryname (If you dont specify the download directory, the file will be downloaded to the current directory where you were at the time you started the FTP session.)
+- lpwd			#print working directory on local host
+- get file | mget *.xls
+- put /path/file | mput *.xls
+- quit
+3: download a file using sftp (into current directory)
+- sftp <user>@<host or ip>
+- get -r <dirname>
+4: download a file via Rsync or SCP (into current directory) https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
+- rsync -avzh root@192.168.0.100:/home/tarunika/rpmpkgs /tmp/myrpms   (archive mode, increase verbosity, compress during transfer, human readable)
+- rsync -avzhe ssh root@192.168.0.100:/root/install.log /tmp/ (-e command | We will be using “ssh” with “-e” option)
+5: curl a page (so you can see what it says!) https://curl.haxx.se/docs/httpscripting.html#GET
+- curl <https://url to curl.tld>
+
+File/Directory ownership and permissions
+1: change the owner of a file to someone else
+-chown <user> <filename>
+2: change the group of a file to another group
+-chown :<group> <filename>
+3: change the owner and group of a file at the same time (https://www.thegeekstuff.com/2012/06/chown-examples)
+- chown <user>:<group> <file>
+4: change the perms of a file (readme.txt ??) to 755 
+- chmod 754 <file>
+    4 stands for "read",
+    2 stands for "write",
+    1 stands for "execute", and
+    0 stands for "no permission."
+
+
