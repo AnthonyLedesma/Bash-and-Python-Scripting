@@ -122,12 +122,15 @@ Resources and process information (awk examples https://www.gnu.org/software/gaw
 ** Xtra Advanced But Useful **
 
 1: check iptables rules
-- sudo iptables -S
+- sudo iptables -S (by specification) + sudo iptables -L --line-numbers (table format sorted by chain + line numbers)
 2: add an allow rule in the INPUT chain for an IP (use our support IP)
 - 
 3: remove a specific rule
+- iptables -D <chain> <line num>
 4: add a deny rule in the INPUT chain for an IP (block some random country, or some internet troll)
 5: create a cron job by hand. Make it do something fun like output the current time to a text file once an hour.
 6: install memcached (a system service) and edit its config. Give it a decent amount of ram to work with (128 mb).
+- yum install memcached
+- 
 7: set memcached to auto start on boot (in runlevels 2-5 only) - verify it is running using netstat -pant
 
