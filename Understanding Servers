@@ -1,3 +1,4 @@
+**Basic**
 Files/Directories
 1: make a directory
 - mkdir <dirname>
@@ -58,4 +59,75 @@ File/Directory ownership and permissions
     1 stands for "execute", and
     0 stands for "no permission."
 
+**Advanced**
+Services and installing packages
+1: install or verify that apache (httpd) is installed
+- service httpd status
+2: see if apache is started (if so, stop it)
+- service httpd status + apachectl -k graceful-stop ( service httpd stop )
+3: start apache
+- service httpd start
+4: restart apache
+- service httpd restart 
+5: restart apache gracefully
+- apachectl -k graceful  (https://httpd.apache.org/docs/2.4/stopping.html)
+6: add a rule in the hosts file pointing a fake domain/hostname to the IP address of the server
+- nano /etc/hosts + <ip> <domain name> <hostname>
+7: run an update via yum
+- yum update | yum nano update | yum httpd update
+8: install nano
+- (sudo) yum update | yum install nano
+9: check which ports apache is listening on using netstat -pant 
+- (Local Address Column) After : is port (State) show LISTEN
+- Consider using awk something like (netstat -pant | awk -v OFS='\t ' '{print $6, $4}')
+
+Reading data and output redirection
+1: cat a small file
+- cat readme.txt
+2: head and tail a medium-large file
+- head <filename> + tail <filename>
+3: do the same but show 20 lines from head and tail instead of the default 10 lines
+- head -n 20 <filename> + tail -n 30 <filename>   OR head -20 <filename>
+4: less a file
+- less <filename> + q to exit
+5: grep for specific text in the file
+- grep 'matching text' readme.txt
+6: grep for specific text in the file and send the output to a file instead of your screen
+- grep 'matching text' readme.txt > results.txt
+7: show how many lines are in a file 
+- wc -l <filename>
+
+Resources and process information (awk examples https://www.gnu.org/software/gawk/manual/html_node/Printf-Examples.html)
+1: show system information from top and find load, io and total/free memeory
+-  free -m | awk 'NR==2{printf "Memory Usage: %s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }'
+   NR==2 Ordinal Numbers - rows in this case. 2nd row. print f (formatted print) "memory usage: 1st string/2nd stringMB (2 digit floating point) \ new line
+    $3,$2,$3*100/$2 " 3rd column, 2nd column, 3rd column times 100 and divided by the value of 2nd column. (order here defines print f string order)
+- top | first line shows "top - 18:28:30 up  4:36,  1 user,  load average: 0.00, 0.00, 0.00"
+    "three numbers representing the number of processes waiting for the CPU now, an average for the past five minutes, and an average for the past fifteen minutes. These three numbers are the 'load average'"
+- top + 1 | "While in top, you will also want to look at ‘wa’ it should be 0.0% almost all the time. Values *consistently* above 1% may indicate that your storage device is too slow to keep up with incoming requests"
+2: find the process (or a few processes) that are consuming the majority of system resources (cpu)
+- ps aux | sort -nrk 3,3 | head -n 5
+    -nrk 3,3 (numaric sort, reverse comparison result giving greater value first, specify positions [column 3, column3]
+3: find all processes with a specific word in them using 'ps aux' and something else
+- ps aux | grep 'phrase'  OR (how do I use ps aux -C command-name --no-headers?)
+4: count how many of these processes are running (using a command) 
+- ps aux --no-headers | wc -l
+
+5 Bonus: What is the avail disk space.
+- df -h | awk '$NF=="/"{printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'
+    '$NF=="/" (Only print lines where last column has '/')
+    {printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}  =  Disk Usage: digit/digitGB (string)\new-line, '1st digit, 2nd digit, 3rd string'
+
+
+** Xtra Advanced But Useful **
+
+1: check iptables rules
+- sudo iptables -S
+2: add an allow rule in the INPUT chain for an IP (use our support IP)
+- 
+3: remove a specific rule
+4: add a deny rule in the INPUT chain for an IP (block some random country, or some internet troll)
+5: create a cron job by hand. Make it do something fun like output the current time to a text file once an hour.
+6: install memcached (a system service) and edit its config. Give it a decent amount of ram to work with (128 mb).
+7: set memcached to auto start on boot (in runlevels 2-5 only) - verify it is running using netstat -pant
 
