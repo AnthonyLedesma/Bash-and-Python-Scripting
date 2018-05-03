@@ -131,6 +131,6 @@ Resources and process information (awk examples https://www.gnu.org/software/gaw
 5: create a cron job by hand. Make it do something fun like output the current time to a text file once an hour.
 6: install memcached (a system service) and edit its config. Give it a decent amount of ram to work with (128 mb).
 - yum install memcached
-- 
+- nano /etc/sysconfig/memcached
 7: set memcached to auto start on boot (in runlevels 2-5 only) - verify it is running using netstat -pant
 
