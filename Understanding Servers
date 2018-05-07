@@ -117,6 +117,9 @@ Resources and process information (awk examples https://www.gnu.org/software/gaw
 - df -h | awk '$NF=="/"{printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'
     '$NF=="/" (Only print lines where last column has '/')
     {printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}  =  Disk Usage: digit/digitGB (string)\new-line, '1st digit, 2nd digit, 3rd string'
+- df -h | awk '$0 ~ /\// {printf "Disk Usage: %d/%dGB (%s) On Dir: %s \n", $3,$2,$5,$6}'
+    Search whole line for / char. If it has the / print the line and gather the speicfic columns that we want. 
+
 
 
 ** Xtra Advanced But Useful **
