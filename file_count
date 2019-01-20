@@ -11,7 +11,7 @@ echo "The input is $DIR"
 
 echo "$DIR"
 local RES=$(ls $DIR -la | wc -l)
-echo "${RES}"
+echo "Filecount for folder $DIR: ${RES}"
 }
 filecount_dir
 fi 
