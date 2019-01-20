@@ -1,0 +1,28 @@
+# #!/usr/bin/env bash
+#!/bin/bash
+
+if [ $# -gt 0 ]
+then
+echo "Hit the greater then 0 statement"
+DIR="$1"
+filecount_dir () {
+
+echo "The input is $DIR"
+
+echo "$DIR"
+local RES=$(ls $DIR -la | wc -l)
+echo "${RES}"
+}
+filecount_dir
+fi 
+if [ $# -lt 1 ]
+then
+echo "Hit the less then 1 statment"
+filecount () {
+local RESULT=$(ls -la | wc -l)
+
+echo "${RESULT}"
+}
+filecount
+
+fi
