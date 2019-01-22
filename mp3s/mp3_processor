@@ -1,12 +1,27 @@
 #!/usr/bin/env bash
 
-for i in $(ls); do
-	if( ls $i | grep "(.mp3){1}" -Pi)
-	then
-	mv $i "$(date +%F)-$i"
-	echo processed item: $i	
+#for i in $(ls); do
+	#if( ls $i | grep "(.mp3){1}" -Pi)
+	#then
+	#mv $i "$(date +%F)-$i"
+	#echo processed item: $i	
 
-	fi
+	#fi
 
+
+[ $# -eq 0 ] && DIR=$(pwd) || DIR=$1
+echo "$DIR"
+[ -d "$DIR" ] && cd "$DIR" || exit 2
+
+shopt -s nullglob
+found=0
+for i in *.mp3; do
+	echo "file $i found" 
+	found=1
 done
+shopt -u nullglob
+[ $found -eq 0 ] && echo "Directory is empty"
+cd $old
+
+#done
 
