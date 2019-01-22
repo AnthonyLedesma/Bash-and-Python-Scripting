@@ -14,7 +14,7 @@ Shell Script Order and Checklist
 
 ```
 
-### (IF Statement)[https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php]
+### [IF Statement](https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php)
 ```bash
 #!/usr/bin/env bash
 # Basic if statement
@@ -26,7 +26,7 @@ fi
 date
 ```
 
-### (For, While, Until)[http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-7.html]
+### [For, While, Until](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-7.html)
 ```bash
 #!/usr/bin/env bash
 #For Loop
