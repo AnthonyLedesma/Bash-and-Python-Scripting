@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-#for i in $(ls); do
-	#if( ls $i | grep "(.mp3){1}" -Pi)
-	#then
-	#mv $i "$(date +%F)-$i"
-	#echo processed item: $i	
-
-	#fi
 
 DIR=$(pwd)
 [ $# -gt 0 ] && [ -f $1 ] && echo "Argument passed is not a directory. Argument: $1" && exit 2
@@ -16,11 +9,24 @@ DIR=$(pwd)
 shopt -s nullglob
 found=0
 for i in *.mp3; do
-	echo "file $i found" 
+echo "file $i found" 
 	found=1
 done
 shopt -u nullglob
 [ $found -eq 0 ] && echo "Directory is empty"
+
+if(( "$found" > "0"))
+then
+	for i in $(ls); do
+		if( ls $i | grep "(.mp3){1}" -Pi )
+		then
+			mv $i "$(date +%F)-$i"
+			echo processed item: $i	
+
+		fi
+	done
+fi
+
 cd "$DIR"
 
 #done
