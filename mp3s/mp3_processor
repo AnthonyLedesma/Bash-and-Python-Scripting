@@ -9,6 +9,7 @@
 	#fi
 
 DIR=$(pwd)
+[ $# -gt 0 ] && [ -f $1 ] && echo "Argument passed is not a directory. Argument: $1" && exit 2
 [ $# -eq 0 ] && DIR=$(pwd) && echo "No Directory Given. Defaulting to pwd: $(pwd)" || DIR=$1 && echo "Directory has been given. Dir: $1"
 [ -d "$DIR" ] && cd "$DIR" || exit 1
 
