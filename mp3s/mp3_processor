@@ -8,10 +8,9 @@
 
 	#fi
 
-
-[ $# -eq 0 ] && DIR=$(pwd) || DIR=$1
-echo "$DIR"
-[ -d "$DIR" ] && cd "$DIR" || exit 2
+DIR=$(pwd)
+[ $# -eq 0 ] && DIR=$(pwd) && echo "No Directory Given. Defaulting to pwd: $(pwd)" || DIR=$1 && echo "Directory has been given. Dir: $1"
+[ -d "$DIR" ] && cd "$DIR" || exit 1
 
 shopt -s nullglob
 found=0
@@ -21,7 +20,7 @@ for i in *.mp3; do
 done
 shopt -u nullglob
 [ $found -eq 0 ] && echo "Directory is empty"
-cd $old
+cd "$DIR"
 
 #done
 
