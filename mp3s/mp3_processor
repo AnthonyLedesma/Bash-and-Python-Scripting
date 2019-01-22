@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+for i in $(ls); do
+	if( ls $i | grep "(.mp3){1}" -Pi)
+	then
+	mv $i "$(date +%F)-$i"
+	echo processed item: $i	
+
+	fi
+
+done
+
