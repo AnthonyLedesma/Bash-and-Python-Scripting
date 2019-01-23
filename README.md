@@ -109,3 +109,41 @@ cd "$DIR"
 #the paths to the matched files.
 find ./ -type f -name "*.mp3" -execdir rm "{}" \;
 ```
+
+### [User Input](https://ryanstutorials.net/bash-scripting-tutorial/bash-input.php)
+```bash
+OLD_DIR=$(pwd)
+echo "Please enter the file extension to search for";
+read EXTENSION;
+echo "The extension given was: $EXTENSION"; 
+
+echo "Please enter the directory to search(Press enter to select pwd)";
+read DIRECTORY;
+if [ -z "$DIRECTORY" ]
+then
+	DIRECTORY=$(pwd);
+	echo "Searching for directory $DIRECTORY";
+else
+	echo "Searching for directory $DIRECTORY";
+fi
+if [ -d "$DIRECTORY" ]
+then
+	echo "Directory found. Moving to $DIRECTORY";
+	PROCEED="y";
+else
+	echo "No matching path was found."
+	echo "pwd : $(pwd)";
+	echo "Do you want to switch to pwd? (y/n)";
+	read PROCEED;
+	[ "$PROCEED" == "y" ] && DIRECTORY=$(pwd);
+fi
+if [ "$PROCEED" == "y" ]
+then	
+	cd "$DIRECTORY";
+	echo "Working in $(pwd)";
+else
+	echo "Opperation aborted";
+	exit 1;
+fi
+#Code continued
+```
