@@ -58,7 +58,7 @@ then
 	read PREFIX;
 	[ -z "$PREFIX" ] && PREFIX=$(date +%F);
 else
-	echo "Opperation aborted";
+	echo "Operation aborted";
 	exit 3;
 fi
 
@@ -66,6 +66,21 @@ echo "Extension is $EXTENSION";
 echo "Path is $DIRECTORY";
 echo "Prefix is $PREFIX";
 
+prefix () {
+
+#Setting nullglob for extension detection
+shopt -s nullglob;
+
+for i in *"$EXTENSION"; do
+	echo "Prefixing file $i => $(date +%F)-$i";
+	mv "$i" "$(date +%F)-$i";
+done
+shopt -u nullglob
+echo "Work is done";
+echo "Here is the ls -a";
+ls -a; 
+}
+prefix;
 cd "$OLD_DIR";
 echo "Script ended";
 
