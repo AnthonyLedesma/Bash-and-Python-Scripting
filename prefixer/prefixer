@@ -34,4 +34,19 @@ else
 	exit 1;
 fi
 
+#Now we search for the files in the given path.
+#Setting nullglob for extension detection
+shopt -s nullglob;
+FOUND=0;
+echo "Searching for *$EXTENSION";
+for i in *"$EXTENSION"; do
+	echo "Found $i";
+	FOUND=1;
+done
+shopt -u nullglob
+[ "$FOUND" -eq 0 ] && echo "Directory does not contain *$EXTENSION.";
+
+cd "$OLD_DIR";
+echo "Script ended";
+
 
