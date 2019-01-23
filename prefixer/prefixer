@@ -44,7 +44,27 @@ for i in *"$EXTENSION"; do
 	FOUND=1;
 done
 shopt -u nullglob
-[ "$FOUND" -eq 0 ] && echo "Directory does not contain *$EXTENSION.";
+[ "$FOUND" -eq 0 ] && echo "Directory does not contain *$EXTENSION." && exit 2;
+
+
+PROCEED='n';
+echo "Do you want to prefix these files? (y/n)"
+read PROCEED;
+
+if [ "$PROCEED" == "y" ]
+then
+	echo "Enter your desired file prefix";
+	echo "or press enter for the prefix: $(date +%F)";
+	read PREFIX;
+	[ -z "$PREFIX" ] && PREFIX=$(date +%F);
+else
+	echo "Opperation aborted";
+	exit 3;
+fi
+
+echo "Extension is $EXTENSION";
+echo "Path is $DIRECTORY";
+echo "Prefix is $PREFIX";
 
 cd "$OLD_DIR";
 echo "Script ended";
