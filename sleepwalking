@@ -1,0 +1,20 @@
+#!/bin/bash
+[ "$#" -lt "1" ] && echo "Usage sleepwalking start|stop" && exit 1;
+
+case "$1" in
+	start)
+	VAL="${HOME}/development/bash_scripting/sleepwalkingserver";
+$VAL &
+echo "Process has started"
+	;;
+	stop)
+	while read p; do
+		echo "Killing $p";
+		kill "$p";
+	done <"${HOME}/development/bash_scripting/sleepwalkingserver.pid"
+	;;
+	*)
+		echo "All Else";
+		exit 1;
+esac
+

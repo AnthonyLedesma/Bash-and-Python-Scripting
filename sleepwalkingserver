@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+PID_FILE="${HOME}/development/bash_scripting/sleepwalkingserver.pid";
+trap "rm $PID_FILE; exit" SIGHUP SIGINT SIGTERM
+PID=$(echo "$$"); 
+echo $PID >> $PID_FILE;
+
+
+while true
+do
+	:
+done
