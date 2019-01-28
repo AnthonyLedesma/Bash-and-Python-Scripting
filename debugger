@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+debugger () {
+PS4="$USER executed => "
+set -exv
+ls /
+#ls /this/ls/will/fail
+ls /var/log/
+set +xev
+
+set -v
+ls /
+ls /this/ls/will/fail
+ls /var/log/
+set +v
+
+}
+
+debugger;
