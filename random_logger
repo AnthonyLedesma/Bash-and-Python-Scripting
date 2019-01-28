@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+RAND1=$RANDOM;
+RAND2=$RANDOM;
+RAND3=$RANDOM;
+logger -i -t "randomly" -p user.info "$RAND1 $RAND2 $RAND3";
+
