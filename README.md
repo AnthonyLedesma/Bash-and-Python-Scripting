@@ -147,3 +147,37 @@ else
 fi
 #Code continued
 ```
+
+### [Case Statements](https://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_03.html)
+```bash
+#!/usr/bin/env bash
+#Select an option to run commands.
+EXIT=false;
+while [ "$EXIT" == "false"  ]; do
+	echo "Select the option that you want";
+	echo "1. Show disk usage.";
+	echo "2. Show system uptime";
+	echo "3. Show current users logged into the system";
+	echo "Enter 'q' to quit the script";
+	read SELECTION
+
+	case "$SELECTION" in
+		1)
+		df;
+		;;
+		2)
+		uptime;
+		;;
+		3)
+		who;
+		;;
+		q)
+		echo "Goodbye";
+		EXIT=true;
+		;;
+		*)
+		echo "Invalid option";
+		;;
+	esac
+done
+```
