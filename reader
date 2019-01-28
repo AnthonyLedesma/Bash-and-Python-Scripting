@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+echo "Welcome to reader!";
+echo "We will read the /etc/passwd file today.";
+echo "How many line would you like to read?";
+read TOTAL_LINES;
+
+[ "$TOTAL_LINES" == "0" ]&& echo "Goodbye" && exit 0;
+
+if (( "$TOTAL_LINES" > "0" ))
+then
+	if (( "$TOTAL_LINES" == "0" )) 
+	then 
+		echo "Goodbye";
+		exit 1;
+	fi
+	echo "You have selected to display $TOTAL_LINES lines";
+else
+	echo "You have not entered a typical number";
+	exit 2;
+fi
+
+
+LINE_COUNT=0
+while read LINE_CONTENT; do
+	((LINE_COUNT++));	
+	echo "$LINE_COUNT: $LINE_CONTENT";
+
+	[ "$LINE_COUNT" == "$TOTAL_LINES" ] && echo "Done printing lines" &&  exit 3;
+done </etc/passwd;
+
