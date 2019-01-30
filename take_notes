@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Simple note-taking script
+# Author Anthony Ledesma
+
+echo $(date): $* >> ~/notes.txt;
+echo "Note saved: $*";
+
