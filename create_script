@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# create_script
+# This script creates a new bash script, sets permissions and more
+# Author Anthony Ledesma
+
+
+# Is there an argument?
+if [[ ! $1 ]]; then
+	echo "Missing argument";
+	exit 1;
+fi
+
+# Set variables
+scriptname="$1";
+bindir="${HOME}/development/bash_scripting/bin";
+filename="${bindir}/${scriptname}";
+
+# Does the file already exist?
+if [[ -e "$filename" ]]; then
+	echo "File $filename already exists";
+	exit 1
+fi
+
+
+# Check bin directory exists
+if [[ ! -d $bindir ]]; then
+	#if not: create bin directory
+	if mkdir "$bindir"; then
+		echo "Created ${bindir}";
+	else
+		echo "Could not create ${bindir}";
+		exit 1;
+	fi
+fi
+
+
+# Check if scriptname already exists.
+if type "$scriptname" 2>/dev/null ||  type "$filename" 2>/dev/null; then
+	echo "There is already a command with the name ${scriptname}";
+	exit 1;
+fi
+
+# Create a script with a single line
+echo "#!/usr/bin/env bash" >> "$filename";
+# Set as user executable
+chmod u+x "$filename" && echo "Script '$scriptname' created and placed in '$bindir'";
+# Open with editor;
+#$EDITOR "$filename";
+
+
+
