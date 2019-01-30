@@ -43,10 +43,17 @@ fi
 
 # Create a script with a single line
 echo "#!/usr/bin/env bash" >> "$filename";
-# Set as user executable
-chmod u+x "$filename" && echo "Script '$scriptname' created and placed in '$bindir'";
-# Open with editor;
-#$EDITOR "$filename";
 
+# Set as user executable
+chmod u+x "$filename";
+
+
+
+# Open with editor;
+if [[ $EDITOR ]]; then
+	$EDITOR "$filename";
+else
+	echo "Script created; Not starting editor because \$EDITOR is not set.";
+fi
 
 
