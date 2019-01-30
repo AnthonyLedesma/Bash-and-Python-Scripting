@@ -8,9 +8,13 @@ date=$(date);
 
 # Get the topic
 topic=$1;
+
+# Set filename
+filename=~/${topic}notes.txt;
+
 # Ask user for input
 read -p "Your note: " note;
 
-echo $date: $note >> ~/${topic}notes.txt;
-echo "Note saved: $note";
+echo $date: $note >> $filename;
+echo "Note '$note' saved to '$filename'";
 
