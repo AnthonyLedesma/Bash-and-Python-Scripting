@@ -1,4 +1,10 @@
-# Bash Scriping Reference
+# Scripting Repository Reference
+Click Options To Jump To Topic
+[Bash](#bash) 
+
+[Python](#python)
+
+# <a name="bash"></a>Bash Scriping Reference
 
 Shell Script Order and Checklist
 ```bash
@@ -181,7 +187,7 @@ while [ "$EXIT" == "false"  ]; do
 done
 ```
 
-# Python Scriping Reference
+# <a name="python"></a> Python Scriping Reference
 
 ### [Input/Output JSON](https://docs.python.org/3/tutorial/inputoutput.html)
 ```python
