@@ -3,7 +3,7 @@ Click Options To Jump To Topic
 
 ## [Bash](#bash) 
 
-[Bash Script Order](#bash.order)bash.order
+[Bash Script Order](#bash.order)
 
 [Bash If Statement](#bash.if)
 
