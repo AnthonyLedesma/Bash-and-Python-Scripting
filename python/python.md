@@ -68,3 +68,40 @@ $ pip install SomePackage
 - Call out to python code within interactive REPL
 3. Natively
 - "Compile and Run" (py2exe, pyinstaller, etc.)
+
+
+## Script Reloading Example for REPL Using importLib
+#### hello_world.py - Created
+```python
+def sayHello():
+        print("Hello, Functions!")
+```
+
+#### Bash to execute python3
+```bash
+$ python3
+```
+
+#### Python REPL
+```python
+>>> import hello_world
+>>> hello_world.sayHello()
+Hello, Functions!
+```
+
+#### hello_world.py - Edited
+```python
+def sayHello():
+        print("Hello, Again!")
+```
+
+#### Python REPL
+```python
+>>> hello_world.sayHello()
+Hello, Functions!
+>>> import importlib
+>>> importlib.reload(hello_world)
+<module 'hello_world' from '/home/paranoia/development/scripting/python/hello_world/hello_world.py'>
+>>> hello_world.sayHello()
+Hello, Again!
+```
