@@ -1,5 +1,4 @@
-# .bashrc
-# Beginnings of Bash Scriping
+# Bash Scriping Reference
 
 Shell Script Order and Checklist
 ```bash
@@ -181,3 +180,17 @@ while [ "$EXIT" == "false"  ]; do
 	esac
 done
 ```
+
+# Python Scriping Reference
+
+### [Input/Output JSON](https://docs.python.org/3/tutorial/inputoutput.html)
+```python
+import json
+with open('input.json', 'r') as input:
+	obj = json.load(input)
+	with open('output.txt', 'w') as output:
+		output.write(obj['name'] + "'s Hobbies:\n")
+		for hobby in obj['hobbies']:
+			output.write(hobby + "\n")
+```
+
