@@ -84,6 +84,15 @@ Call out to python code within interactive REPL
 - Omitted return parameter or implicit return at end returns ```python None```
 - Use ```__name__``` to determine how the module is being used.
 - If ```__name == "__main__"``` the module is being executed.
+- Command line arguments are accessible through ```python sys.argv```
+- The script filename is in ```python sys.argv[0]```
+- Docstrings are standalone literal string as the first statment of a function or a module 
+- Docstrings are delimited by tripple quotes
+- Docstrings provide ```python help()```
+- Module docstrings should precede other statements
+- Comments begin with # and run to the end of the line
+- A special comment on the first line beginning #! controls module execution by the program loader.
+
 
 ## Script Reloading Example for REPL Using importLib
 In this example we utilize the 'importlib' module's reload function to refresh the python script for REPL to use.
