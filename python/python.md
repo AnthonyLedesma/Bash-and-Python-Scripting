@@ -75,6 +75,16 @@ Call out to python code within interactive REPL
  "Compile and Run" (py2exe, pyinstaller, etc.)
 
 
+### Python Modularity Key Facts
+- Python code is placed in *.py files called "modules"
+- Modules can be executed directly with ```python python3 module_name.py```
+- Brought into the REPL or other modules with ```python import module_name```
+- Named functions defined with the def keyword ```python def function_name(arg1, argn): ```
+- Return from frunctions using ```python return``` keyword with optional parameter
+- Omitted return parameter or implicit return at end returns ```python None```
+- Use ```__name__``` to determine how the module is being used.
+- If ```__name == "__main__"``` the module is being executed.
+
 ## Script Reloading Example for REPL Using importLib
 In this example we utilize the 'importlib' module's reload function to refresh the python script for REPL to use.
 #### hello_world.py - Created
