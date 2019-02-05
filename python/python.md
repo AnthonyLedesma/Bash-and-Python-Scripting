@@ -1,6 +1,6 @@
 # Python
 
--Exstensible Design
+-Extensible Design
 
 -Community Involved Design
 
@@ -80,14 +80,14 @@ Call out to python code within interactive REPL
 - Modules can be executed directly with ```python python3 module_name.py```
 - Brought into the REPL or other modules with ```python import module_name```
 - Named functions defined with the def keyword ```python def function_name(arg1, argn): ```
-- Return from frunctions using ```python return``` keyword with optional parameter
+- Return from functions using ```python return``` keyword with optional parameter
 - Omitted return parameter or implicit return at end returns ```python None```
 - Use ```__name__``` to determine how the module is being used 
 - If ```__name == "__main__"``` the module is being executed
 - Command line arguments are accessible through ```python sys.argv```
 - The script filename is in ```python sys.argv[0]```
-- Docstrings are standalone literal string as the first statment of a function or a module 
-- Docstrings are delimited by tripple quotes
+- Docstrings are standalone literal string as the first statement of a function or a module 
+- Docstrings are delimited by triple quotes
 - Docstrings provide ```python help()```
 - Module docstrings should precede other statements
 - Comments begin with # and run to the end of the line
@@ -95,7 +95,7 @@ Call out to python code within interactive REPL
 
 
 ## Objects - Summary
-- Think of named references to objects rather then variables
+- Think of named references to objects rather than variables
   * Assignment attaches a name to an object
   * Assigning from one reference to another puts two name tags on the same object
 - The garbage collector reclaims unreachable objects
@@ -128,7 +128,7 @@ Call out to python code within interactive REPL
 - The docstring for a function or module object can be accessed through its `__doc__` attribute
 - Use `len()` to measure the length of a string
 - You can multiply a string by an integer
-  * Productes a new string with multiple copies of the operand
+  * Produces a new string with multiple copies of the operand
   * this is called the "repetition" operation
 
 ## Collections - A Few Types
@@ -161,7 +161,7 @@ Call out to python code within interactive REPL
   * prefer `enumerate()` for counters 
 
 ## Exception Handling
-- Raising an exception interrupts normal program flow and trasnfers control to an exception handler
+- Raising an exception interrupts normal program flow and transfers control to an exception handler
 - Exception handlers defined using the `try...except` construct
 - `try` blocks define a context for detecting exceptions
 - Corresponding `except` blocks handle specific exception types
@@ -170,18 +170,54 @@ Call out to python code within interactive REPL
 - `except` blocks can capture an exception, which are often a standard type
 - Programmer errors should not normally be handled
 - Exceptional conditions can be normally handled
-- `raise` without an argument re-raises the currect exception
-- Generally do not chack for `TypeErrors`
-- Exception objects can be convered to strings using `str()`
+- `raise` without an argument re-raises the current exception
+- Generally do not check for `TypeErrors`
+- Exception objects can be converted to strings using `str()`
 - A function's exceptions form part of its API
   * They should be documented properly
 - Prefer to use built-in exception types when possible
 - Use the `try...finally` construct to preform cleanup actions
   * May be used in conjunction with `except` blocks
 - Output of `print()` can be redirected using the optional `file` argument
-- Use `and` and `or` for combining boolean expressions
+- Use `and` and `or` for combining Boolean expressions
 - Return codes are too easily ignored
 - Platform-specific actions can be implemented using EAFP along with catching `importError`s
+
+
+### Comprehensions, Generators and Iterables in Python
+- Specify iterable sequences
+  * All generators are iterators
+- Are lazily evaluated
+  * The next value in the sequence is computed on demand
+- Can model infinite sequences
+  * Such as data streams with no definite end
+- Are composable into pipelines
+  * For natural stream processing
+- Comprehensions are concise syntax for describing lists, sets and dictionaries
+- Comprehensions operate on an iterable source object and apply an optional predicate filter and a mandatory expression, both of which are usually in terms of the current item
+- Iterables are objects over which we can iterate item by item
+- We retrieve an iterator from an iterable object using the built-in `iter()` function
+- Iterators produce items one-by-one from the underlying iterable series each time they are passed to the built-in next() function
+- Generator functions allow us to describe series using imperative code
+- Generator functions contain at least one use of the `yield` keyword.
+- Generators are iterators. When advanced with `next()` the generator starts or resumes execution up to and including the next yield
+- Each call to a generator function creates a new generator object.
+- Generators can maintain explicit state in local variables between iteractions.
+- Generators are lazy, and so can model infinite series of data.
+- Generator expressions have a similar syntactic form to list comprehensions and allow for a more declarative and concise way of creating generator objects.
+- Iteration tools - Built-ins
+  * `sum()`
+  * `any()`
+  * `zip()`
+  * `all()`
+  * `min()`
+  * `max()`
+  * `enumerate()`
+- Standard library itertools module
+  * `chain()`
+  * `islice()`
+  * `count()`
+  * many more!
 
 
 ## Script Reloading Example for REPL Using importLib
@@ -223,8 +259,8 @@ Hello, Again!
 ```
 
 
-## Example Using Autoreload with iPython
-This example hotloads a python script after file changes. This is done using iPython3 utility and the extension 'autoreload'
+## Example Using Auto reload with iPython
+This example hot loads a python script after file changes. This is done using iPython3 utility and the extension 'autoreload'
 #### hello_world.py - Created
 ```python
 def sayHello():
