@@ -131,6 +131,34 @@ Call out to python code within interactive REPL
   * Productes a new string with multiple copies of the operand
   * this is called the "repetition" operation
 
+## Collections - A Few Types
+- `tuple` - Heterogeneous immutable sequences
+- `str` - Homogeneous immutable sequence of Unicode codepoints (characters)
+- `range` - Arithmetic progression of integers
+- `list` - Heterogeneous mutable sequence
+- `dict` - Unordered mapping from unique, immutable keys to mutable values
+- `set` - Unordered collection of unique, immutable objects
+
+#### Collection Protocols
+| Protocol | Implementing Collections |
+| -------- |:--------:|
+| Container | str, list, range, tuple, bytes, set, dict |
+| Sized | str, list, range, tuple, bytes, set, dict  |
+| Iterable | str, list, range, tuple, bytes, set, dict |
+| Sequence | str, list, range, tuple, bytes |
+| Mutable Sequence | list |
+| Mutable Set | set |
+| Mutable Mapping | dict |
+
+## A Few Things To Avoid
+1. Abusing `range()`
+  * Avoid `range()` for iterating over lists
+  * Python is not C
+  * Don't be un-pythonic!
+- Prefer direct iteration over iterable objects such as lists
+
+2. Do not use `range()`
+  * prefer `enumerate()` for counters 
 
 
 
