@@ -56,7 +56,7 @@ $ pip install SomePackage
 | ipython  | ipython3 |
 
 ### Which should you choose?
-:heavy_check_mark: Default to Python 3 when possible. 
+:heavy_check_mark: Default to Python 3 when possible 
 
 :x: Python 2.x is legacy
 
@@ -82,8 +82,8 @@ Call out to python code within interactive REPL
 - Named functions defined with the def keyword ```python def function_name(arg1, argn): ```
 - Return from frunctions using ```python return``` keyword with optional parameter
 - Omitted return parameter or implicit return at end returns ```python None```
-- Use ```__name__``` to determine how the module is being used.
-- If ```__name == "__main__"``` the module is being executed.
+- Use ```__name__``` to determine how the module is being used 
+- If ```__name == "__main__"``` the module is being executed
 - Command line arguments are accessible through ```python sys.argv```
 - The script filename is in ```python sys.argv[0]```
 - Docstrings are standalone literal string as the first statment of a function or a module 
@@ -91,11 +91,53 @@ Call out to python code within interactive REPL
 - Docstrings provide ```python help()```
 - Module docstrings should precede other statements
 - Comments begin with # and run to the end of the line
-- A special comment on the first line beginning #! controls module execution by the program loader.
+- A special comment on the first line beginning #! controls module execution by the program loader
+
+
+## Objects - Summary
+- Think of named references to objects rather then variables
+  * Assignment attaches a name to an object
+  * Assigning from one reference to another puts two name tags on the same object
+- The garbage collector reclaims unreachable objects
+- `id()` returns a unique and constant identifier
+  * Rarely used in production
+- The `is` operator determines equality of identity 
+- Test for equivalence using `==`
+- Function arguments are passed by object-reference
+  * Functions can modify mutable arguments
+- Reference is lost if a formal function argument is rebound
+  * To change a mutable argument, replace its contents
+- `return` also passes by object-reference
+- Function arguments can be specified with defaults
+- Default argument expressions evaluated once, when `def` is executed 
+- Python uses dynamic typing
+  * We don't specify types in advance
+- Python uses strong typing
+  * Types are not coerced to match
+- Names are looked up in four nested scopes
+  * LEGB rule: Local, Enclosing, Global, and Built-ins
+- Global references can be read from a local scope
+- Use `global` to assign to global references from a local scope
+- Everything in Python is an object
+  * This includes modules and functions
+  * They can be treated just like other objects
+- `import` and `def` result in binding to named references
+- `type` can be used to determine the type of an object
+- `dir()` can be used to introspect an object and get its attributes.
+- The name of a function or module object can be accessed through its `__name__` attribute
+- The docstring for a function or module object can be accessed through its `__doc__` attribute
+- Use `len()` to measure the length of a string
+- You can multiply a string by an integer
+  * Productes a new string with multiple copies of the operand
+  * this is called the "repetition" operation
+
+
+
 
 
 ## Script Reloading Example for REPL Using importLib
-In this example we utilize the 'importlib' module's reload function to refresh the python script for REPL to use.
+In this example we utilize the 'importlib' module's reload function to refresh the python script for REPL to use 
+
 #### hello_world.py - Created
 ```python
 def sayHello():
