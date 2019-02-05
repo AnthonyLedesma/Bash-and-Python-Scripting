@@ -160,7 +160,28 @@ Call out to python code within interactive REPL
 2. Do not use `range()`
   * prefer `enumerate()` for counters 
 
-
+## Exception Handling
+- Raising an exception interrupts normal program flow and trasnfers control to an exception handler
+- Exception handlers defined using the `try...except` construct
+- `try` blocks define a context for detecting exceptions
+- Corresponding `except` blocks handle specific exception types
+- Python uses exceptions pervasively
+  * Many build-in language features depend on them
+- `except` blocks can capture an exception, which are often a standard type
+- Programmer errors should not normally be handled
+- Exceptional conditions can be normally handled
+- `raise` without an argument re-raises the currect exception
+- Generally do not chack for `TypeErrors`
+- Exception objects can be convered to strings using `str()`
+- A function's exceptions form part of its API
+  * They should be documented properly
+- Prefer to use built-in exception types when possible
+- Use the `try...finally` construct to preform cleanup actions
+  * May be used in conjunction with `except` blocks
+- Output of `print()` can be redirected using the optional `file` argument
+- Use `and` and `or` for combining boolean expressions
+- Return codes are too easily ignored
+- Platform-specific actions can be implemented using EAFP along with catching `importError`s
 
 
 ## Script Reloading Example for REPL Using importLib
