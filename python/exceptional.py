@@ -5,6 +5,8 @@ def convert(s):
 	'''Convert to an integer.'''
 	try:
 		x = int(s)
-	except ValueError:
+		print("Conversion succeeded!")
+	except (ValueError, TypeError):
 		x = -1
+		print("Conversion failed")
 	return x
