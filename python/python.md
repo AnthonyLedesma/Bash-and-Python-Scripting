@@ -77,18 +77,18 @@ Call out to python code within interactive REPL
 
 ### Python Modularity Key Facts
 - Python code is placed in *.py files called "modules"
-- Modules can be executed directly with ```python python3 module_name.py```
-- Brought into the REPL or other modules with ```python import module_name```
-- Named functions defined with the def keyword ```python def function_name(arg1, argn): ```
-- Return from functions using ```python return``` keyword with optional parameter
-- Omitted return parameter or implicit return at end returns ```python None```
+- Modules can be executed directly with ```python3 module_name.py```
+- Brought into the REPL or other modules with ```import module_name```
+- Named functions defined with the def keyword ```def function_name(arg1, argn): ```
+- Return from functions using ```return``` keyword with optional parameter
+- Omitted return parameter or implicit return at end returns ```None```
 - Use ```__name__``` to determine how the module is being used 
 - If ```__name == "__main__"``` the module is being executed
-- Command line arguments are accessible through ```python sys.argv```
-- The script filename is in ```python sys.argv[0]```
+- Command line arguments are accessible through ```sys.argv```
+- The script filename is in ` sys.argv[0]```
 - Docstrings are standalone literal string as the first statement of a function or a module 
 - Docstrings are delimited by triple quotes
-- Docstrings provide ```python help()```
+- Docstrings provide ```help()```
 - Module docstrings should precede other statements
 - Comments begin with # and run to the end of the line
 - A special comment on the first line beginning #! controls module execution by the program loader
@@ -218,6 +218,48 @@ Call out to python code within interactive REPL
   * `islice()`
   * `count()`
   * many more!
+
+### Classses in Python
+- All types in Python have a `class`
+- Classes define the structure and behavior of an object
+- Class is determined when an object is created
+  * Normally fixed for the lifetime
+- Classes are the key support for Object-Oriented Programming in Python
+- Classes defined using the `class` keyword followed by CamelCase name
+- Class instances created by calling the calss as if it were a function
+- Instance methods are functions defined inside the class
+  * Should accept an object instance called `self` as the first parameter
+- Methods are called using `instance.method()`
+  * Syntactic sugar for passing self instance to method
+- The optional `__init__()` method initialized new instances
+  * If present, the constructor calls `__init__()`
+  * `__init__()` is not the constructor
+- Instance attributes are created simply by assigning to them
+- Implementation details are denoted by a leading underscore
+  * There are no public, protected or private access modifiers in Python
+- Accessing implementation details can be very useful
+  * Especially during development and debugging
+- Class invariants should be established in the initializer
+  * if the invariants can't be established raise exceptions to signal failure
+- Methods can have docstrings, just like regular functions
+- Classes can have docscrings
+- Even within an object method calls must be preceeded with `self`
+- You can have as many calsses and functions in a module as you wish
+  * Related calsses and global functions are usually grouped together this way
+- Polymorphism in Python is achieved through duc typing
+- Polymorphism in Python does not use shared base classes or interfaces
+
+### Exception Handling in Python
+- Strings support slicing, because they implement the __sequence__ protocol
+- Following the __Law of Demeter__ can reduce coupling
+- We can nest comprehensions
+- It can sometimes be useful to discard the current item in a comprehension
+- When dealing with one-based collections it's often easier just to waste one list entry
+- Don't feel compelled to use classes when a simple function will suffice
+- Comprehensions or generator expressions can be split over multiple lines
+- Statements can be split over multiple lines using backslash
+  * Use this feature sparingly and only when it improves readability
+- Use __Tell! Don't ask.__ to avoid tight coupling between objects
 
 
 ## Script Reloading Example for REPL Using importLib
