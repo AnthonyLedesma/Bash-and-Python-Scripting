@@ -81,7 +81,7 @@ class Flight:
         if self._seating[from_row][from_letter] is None:
             raise ValueError("No passenger to relocate in seat {}".format(from_seat))
 
-        to_row, to_letter = self._parse_seat(from_seat)
+        to_row, to_letter = self._parse_seat(to_seat)
         if self._seating[to_row][to_letter] is not None:
             raise ValueError("Seat {} already occupied".format(to_seat))
 
@@ -90,6 +90,11 @@ class Flight:
 
     def pprint_seating(self):
         return pp(self._seating)
+
+    def num_available_seats(self):
+        return sum(sum(1 for s in row.values() if s is None)
+                   for row in self._seating
+                   if row is not None)
 
 
 class Aircraft:
