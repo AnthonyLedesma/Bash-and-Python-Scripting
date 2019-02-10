@@ -52,7 +52,7 @@ def write_grayscale(filename, pixels):
         for row in reversed(pixels):
             row_data = bytes(row)
             bmp.write(row_data)
-            padding = b'\x00' * (4 - (len(row) % 4))  # Pad row to multiple of four bytes
+            padding = b'\x00' * ((4 - (len(row) % 4)) % 4) # Pad row to multiple of four bytes
             bmp.write(padding)
 
         # End of file
