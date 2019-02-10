@@ -20,7 +20,7 @@ def write_file():
     f = open(abs_file_path, mode='wt', encoding='utf-8')
     f.write('What the the roots that clutch, ')
     f.write('what branches grow\n')
-    f.write('Out of this stony rubbish')
+    f.write('Out of this stony rubbish? ')
     f.close()
 
 
@@ -37,6 +37,18 @@ def open_file():
     print(g.readline())
     print(g.readline())
     print("...Seeking to the beginning...")
+    g.seek(0)
     print("...using readlines() function...")
     print(g.readlines())
     g.close()
+
+
+def append_file():
+    h = open(abs_file_path, mode='at', encoding='utf-8') #append text mode
+    h.writelines(
+        ['son of man,\n',
+         'You cannot say, or guess, ',
+         'for you know only,\n',
+         'A heap of broken images,',
+         'where the sun beats\n'])
+    h.close()
