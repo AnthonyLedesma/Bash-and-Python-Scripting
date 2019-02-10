@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import sys
 
 script_dir = os.path.dirname(__file__) # Absolute path for script
 rel_path = "writing_files"
@@ -28,27 +29,27 @@ def open_file():
 
     g = open(abs_file_path, mode='rt', encoding='utf-8')
     print('...Reading the first 32 codepoints...')
-    print(g.read(32))
+    sys.stdout.write(g.read(32))
     print('...Then the rest of the file...')
-    print(g.read())
+    sys.stdout.write(g.read())
     print('...Seeking to the beginning...')
     g.seek(0)
     print('...Using readline() function instead...')
-    print(g.readline())
-    print(g.readline())
+    sys.stdout.write(g.readline())
+    sys.stdout.write(g.readline())
     print("...Seeking to the beginning...")
     g.seek(0)
     print("...using readlines() function...")
-    print(g.readlines())
+    sys.stdout.write("".join(g.readlines()))
     g.close()
 
 
 def append_file():
-    h = open(abs_file_path, mode='at', encoding='utf-8') #append text mode
+    h = open(abs_file_path, mode='at', encoding='utf-8')  # append text mode
     h.writelines(
         ['son of man,\n',
          'You cannot say, or guess, ',
          'for you know only,\n',
-         'A heap of broken images,',
+         'A heap of broken images, ',
          'where the sun beats\n'])
     h.close()
