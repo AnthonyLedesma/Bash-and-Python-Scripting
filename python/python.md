@@ -261,6 +261,22 @@ Call out to python code within interactive REPL
   * Use this feature sparingly and only when it improves readability
 - Use __Tell! Don't ask.__ to avoid tight coupling between objects
 
+## Working with files
+### `open()` modes
+#### Collection Protocols
+| Character | Meaning |
+| -------- |:--------:|
+| `r` | open for reading (default) |
+| `w` | open for writing, truncating the file first |
+| `x` | open for exclusive creation, failing if the file already exists|
+| `a` | open for writing, appending to the end of the file if it exists |
+| `b` | binary mode |
+| `t` | text mode (default) |
+| `+` | open a disk file for updating (reading and writing) |
+| `u` | universal newlines mode (for backwards compatibility; should not be used in new code) |
+
+
+
 
 ## Script Reloading Example for REPL Using importLib
 In this example we utilize the 'importlib' module's reload function to refresh the python script for REPL to use 
