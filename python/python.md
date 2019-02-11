@@ -263,7 +263,6 @@ Call out to python code within interactive REPL
 
 ## Working with files
 ### `open()` modes
-#### Collection Protocols
 | Character | Meaning |
 | -------- |:--------:|
 | `r` | open for reading (default) |
@@ -275,6 +274,30 @@ Call out to python code within interactive REPL
 | `+` | open a disk file for updating (reading and writing) |
 | `u` | universal newlines mode (for backwards compatibility; should not be used in new code) |
 
+### Files and Resource Mamanagement
+- files are opened using the built-in `open()` function which accepts a file mode to control read/write/append behavior and whether the file is to be treated as raw binary or encoded text data
+- For text data you should specify a text encoding
+- Text files deal with string objects and preform universal newline translation and string encoding
+- Binary files deal with `bytes` objects with no newline translation or encoding
+- When writing files, its our responsibility to provide newline characters for line breaks
+- Files should always be closed after use
+- Files provide various line-oriented metgods for reading, and are also iterators which yield line by line
+- Files are context managers and the with-statement can be used with context managers to ensure that clean up operations, such as closing files, are preformed
+- The notion of file-like-objects is loosely defined, but very usefil in practice
+  * Exercise EAFP to make the most of them. __Easier to Ask for Forgiveness than Permission__
+- Context managers aren't restricted to file-like-objects. We can use tools in the `contextlib` standard library module such as the `closing()` wrapper to create our own context managers
+- `help()` can be used on instance objects, not just types
+- Python supports bitwise operators `&`, `|` and left `<<` and right shifts `>>` 
+
+## Unittest - Automated and Repeatable
+Key Concepts
+- TestCase
+  * Groups together related test functions
+  * Basic unit of test organization in unittest
+- fixtures
+  * Code runs before and/or after each test function
+- assertions
+  * Specific tests for conditions and behaviors
 
 
 
