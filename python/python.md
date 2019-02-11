@@ -300,6 +300,12 @@ Key Concepts
   * Specific tests for conditions and behaviors
 
 
+## Debugging in Python
+PDB
+- The Python DeBugger
+  * `import pdb`
+  * `pdb.set_trace()`
+
 
 ## Script Reloading Example for REPL Using importLib
 In this example we utilize the 'importlib' module's reload function to refresh the python script for REPL to use 
