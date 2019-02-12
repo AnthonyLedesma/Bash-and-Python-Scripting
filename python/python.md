@@ -306,6 +306,24 @@ PDB
   * `import pdb`
   * `pdb.set_trace()`
 
+## distutils - setup.py
+```python
+from distutils.core import setup
+
+setup(
+        name = 'palindrome',
+        version = '1.0',
+        py_modules = ['palindrome'],
+
+        # metadata
+        author = 'Anthony Ledesma',
+        author_email = 'anthonymledesma@gmail.com',
+        description = 'A module for finding palindromic integers.',
+        license = 'Public domain',
+        keywords = 'example',
+)
+```
+
 
 ## Script Reloading Example for REPL Using importLib
 In this example we utilize the 'importlib' module's reload function to refresh the python script for REPL to use 
