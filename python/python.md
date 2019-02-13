@@ -1,20 +1,18 @@
 # Python
-
--Extensible Design
-
--Community Involved Design
-
--Emphasizing Fun
-
--Culture
+- Extensible Design
+- Community Involved Design
+- Emphasizing Fun
+- Culture
 
 
-### Working With Python
-#### Python
+### __Python definitions__
+- REPL - (Read, Eval, Print, Loop)
+- Package - A module which can contain other modules
+  * Packages are generally directories
+- Module - A script/application which stands alone
+  * Modules are generally files
+- `sys.path` - List of directories Python searches for modules
 
-Executing python file
-
-Rudimentary REPL (Read, Eval, Print, Loop)
 
 #### Pip
 
@@ -306,7 +304,7 @@ PDB
   * `import pdb`
   * `pdb.set_trace()`
 
-## distutils - setup.py
+## distutils - `setup.py`
 ```python
 from distutils.core import setup
 
