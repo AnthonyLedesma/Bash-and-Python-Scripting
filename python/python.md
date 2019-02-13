@@ -12,7 +12,16 @@
 - Module - A script/application which stands alone
   * Modules are generally files
 - `sys.path` - List of directories Python searches for modules
-
+- Absolute Imports - Imports which us a full path to the module. `from reader.reader import Reader`
+- Relative Impoorts - Imports which use a relative path to modules in the same package `from .reader import Reader`
+  * Can reduce typing in deeply nested package structures
+  * Promote certain forms of modifiability
+  * Can aid package renaming and refactoring
+  * General advice is to avoid them in most cases
+- `__all__` - List of attribute names imported via `from module import *`
+- Namespace Packages - Packages wplit across several directories
+  * Namespace packages have no `__init__.py`
+  * This avoids complex initilization ordering problems
 
 #### Pip
 
@@ -366,6 +375,12 @@ setup(
 - You can use the `__file__` attribute on a module to find out where its source file is located
 - Third-party python is generally installed into your installations's `site-packages` directory
 - `nose` is a useful tool for working with `unittest` based tests
+
+## Packages
+- Packages are modules that contain other modules
+- Packages are generally implemented as directores containing a special `__init__.py` file
+- The `__init__.py` file is executred when the package is imported
+- Packages can contain sub packages which themselves are implemented with `__init__.py` files in directories
 
 ## Script Reloading Example for REPL Using importLib
 In this example we utilize the 'importlib' module's reload function to refresh the python script for REPL to use 
