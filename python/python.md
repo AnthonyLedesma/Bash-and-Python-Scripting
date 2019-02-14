@@ -22,6 +22,23 @@
 - Namespace Packages - Packages wplit across several directories
   * Namespace packages have no `__init__.py`
   * This avoids complex initilization ordering problems
+- Executable Directories - Directories containing an entry point for Python execution
+- Executable Zip File - Zip file containing an entry point for Python execution
+- `__call__()` - Special method - Callable instances
+
+## Recomended Project structure
+```javascript
+project_name
+|-> __main__.py
+|-> project_name
+|   |-> __init__.py
+|   |-> more_source.py
+|   |-> subpackage1
+|   |   |-> __init__.py
+|   |-> test
+|       |-> __init__.py
+|-> setup.py
+```
 
 #### Pip
 
