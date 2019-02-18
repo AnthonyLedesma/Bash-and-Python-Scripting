@@ -76,6 +76,83 @@ until [  $COUNTER -lt 10 ]; do
 done
 ```
 
+## AWK
+```bash
+paranoia@paranoia:~$ ifconfig lo | awk -F" " '/TX/{ print toupper($3 $4 $5 $6 $7) }'
+77BYTES6543(6.5KB)
+0DROPPED0OVERRUNS0
+```
+- `-F` => Flag to specify text delmiter
+- `/*/` => Create regex match
+- `{ print toupper($0) }` => Awk commands 
+
+## SED
+```bash
+paranoia@paranoia:~$ sudo sed -i.bak ' /^#/ d ; /^$/ d' /etc/debconf.conf
+```
+- `/*/ ;d` => Regex Match (`d` flag to delete match)
+- `-i[suffex]` => Flag to in-place edit, suffix to create backup of original with sufix appended
+
+## GREP
+```bash
+paranoia@paranoia:~$ cat /proc/cpuinfo | grep -iA4 Name
+model name	: Intel(R) Core(TM) i5-4590T CPU @ 2.00GHz
+stepping	: 3
+cpu MHz		: 1995.388
+cache size	: 6144 KB
+physical id	: 0
+```
+- `i` - Case insensitve
+- `A#` - Display match + '#' amount of lines after match
+- `B#` - Display '#' lines before match
+- `C#` - Display '#' lines before and after match
+
+```bash
+grep 'rotate [^4]$' /etc/logrotate.d/*
+```
+- `[^4]` - Carret character negates the following character from the match
+- `[]$` - Dollar symbox suffix enforces match on end characters of string
+
+```bash
+grep 'rotate [46]$' /etc/logrotate.d/*
+```
+- `[46]` - Matches 4 or 6
+- `[]$` - Dollar symbol suffix enforces match on charactes at end of string
+
+## REGEX - Regular Expressions
+```perl
+A*?+{1}.{1,3}[0-0]*
+```
+- 
+
+```
+\b[Cc]olou?r\b
+```
+- Matches the words Color, Colour, color, or colour
+- `?` - 0 or 1 matches of preceeding character.
+- 
+
+### Anchors
+- `'^' `
+  * Start/beginning of string
+- `'^root'`
+  * String starts with `root`
+- `'$'`
+  * End of string
+- `'4$'`
+  * String ends with 4
+
+### Ranges
+- `'[A-Za-z]'`
+  * any letter
+- `'[0-9]'`
+  * Any digit
+- `'[a-z_]'`
+  * Lowercase a-z or underscore character
+- `'[349]'`
+  * Matches 3, 4, or 9
+
+
 
 
 
