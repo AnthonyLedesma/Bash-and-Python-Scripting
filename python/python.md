@@ -5,7 +5,7 @@
 - Culture
 
 
-### __Python definitions__
+## __Python definitions__
 - REPL - (Read, Eval, Print, Loop)
 - Package - A module which can contain other modules
   * Packages are generally directories
@@ -25,6 +25,59 @@
 - Executable Directories - Directories containing an entry point for Python execution
 - Executable Zip File - Zip file containing an entry point for Python execution
 - `__call__()` - Special method - Callable instances
+- Lambdas - Nameless function instanciators
+  * Expression which evaluates to a function
+  * Anonymous
+  * Argument list terminated by colon, separated by commas
+  * Can contain only a single expression - no statments
+  * Lambdas cannot have docstrings
+- `callable()` - Built in function
+```python 
+>>> def is_even(x):
+...     return x%2 == 0
+...
+>>> callable(is_even)
+True
+>>> is_odd = lambda x: x%2 == 1
+>>> callable(is_odd)
+True
+>>> callable(list)
+True
+>>> callable(list.append)
+True
+>>> class CallMe:
+...     def __call__(self):
+...             print("Called!")
+...
+>>> call_me = CallMe()
+>>> callable(call_me)
+True
+>>> callable("This is not callable")
+False  
+```
+- Extended Formal Argument Syntax 
+  * ```def extended(*args, **kwargs):```
+- Transposing Tables
+  * using `list(zip(*args)` to transpose two-dimension tables of data
+  * Converts rows to columns and vice-versa. 
+  * Zip and __stargs__ (`*args`) are used in production enough to know what they are and how to spot
+  * Used on an iterable series of iterable series
+- `local functions` - Functions defined within the scope of other functions
+
+
+## Local Functions 
+```python
+def func():
+        def local_func():
+                a = 'hello, '
+                b = 'world'
+                return a + b
+        x = 1
+        y = 2
+        return x + y
+```
+
+
 
 ## Recomended Project structure
 ```javascript
@@ -40,30 +93,16 @@ project_name
 |-> setup.py
 ```
 
-#### Pip
-
-3rd Party Libraries
-
-#### ipython
-
-Robust interactive CLI utility
-
-### What is PIP
-Install
-
-Uninstall
-
-Dependencies
-
-Package Groups
-
-Versions
-
-### Installing with PIP
-#### Install PIP
+- Pip
+  * 3rd Party Libraries
+  * Install/Uninstall/Dependencies/Package Groups/Versions
+  * Install PIP
 ```bash
 $ curl https://bootstrap.pypa.io/get-pip.py | python
 ```
+- ipython
+  * Robust interactive CLI utility
+
 
 
 #### Install SomePackage with PIP
