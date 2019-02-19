@@ -87,11 +87,33 @@ paranoia@paranoia:~$ ifconfig lo | awk -F" " '/TX/{ print toupper($3 $4 $5 $6 $7
 - `{ print toupper($0) }` => Awk commands 
 
 ## SED
-```bash
-paranoia@paranoia:~$ sudo sed -i.bak ' /^#/ d ; /^$/ d' /etc/debconf.conf
-```
-- `/*/ ;d` => Regex Match (`d` flag to delete match)
-- `-i[suffex]` => Flag to in-place edit, suffix to create backup of original with sufix appended
+### Using sed commands
+- `$ sed ' p ' /etc/passwd`
+  * The command `p` will print the patter space (matched lines)
+- `$ sed -n ' p ' /etc/passwd`
+  * The `-n` option supresses standard outpit so only matched lines display
+- `$ sed -n '1,$ p ' /etc/passwd`
+  * adding a `range` will print only those matched lines 
+  * `$` character represents end of document
+- `$ sudo sed -i.bak ' /^#/ d ; /^$/ d' /etc/debconf.conf`
+  * `/*/ d ;` => Regex Match (`d` flag to delete match)
+  * `-i[suffex]` => Flag to in-place edit, suffix to create backup of original with sufix appended
+- `$ sed ' [range] s/<string>/<replacement>/ ' /etc/passwd`
+- `$ sed -n ' /^#!/ s@/bin/bash@/binsh@g p' /~/script.sh` 
+  * The substitute command in sed is your `search and replace` tool
+  * The character following the `s` represents the delimiters, often the `/` is used
+  * the `@` is a delimiter as in the example
+  * `^` prefix matches beginning of string
+  * `/ /` characters contain the regular expression
+  * `p` to print the output of sed
+- `$ sed ' /\.dat$/ d' /etc/debconf.conf`
+  * Delete the matched line
+- `$ sed ' /^Template/ i # Here is a comment' /etc/debconf.conf`
+  * Insert new line before the matched line
+- `sed ' /^Template/ a # Here is a comment' /etc/debconf.conf`
+  * Appends a new line after the matched line
+
+
 
 ## GREP
 ```bash
@@ -114,10 +136,13 @@ grep 'rotate [^4]$' /etc/logrotate.d/*
 - `[]$` - Dollar symbox suffix enforces match on end characters of string
 
 ```bash
-grep 'rotate [46]$' /etc/logrotate.d/*
+grep -E 'rotate [46]$' /etc/logrotate.d/*
 ```
 - `[46]` - Matches 4 or 6
 - `[]$` - Dollar symbol suffix enforces match on charactes at end of string
+- `-E` - Extended regular expression
+
+
 
 ## REGEX - Regular Expressions
 ```perl
@@ -151,6 +176,27 @@ A*?+{1}.{1,3}[0-0]*
   * Lowercase a-z or underscore character
 - `'[349]'`
   * Matches 3, 4, or 9
+
+### Boundaries
+- `'\s'`
+  * Whitespace
+- `'\ssystem'`
+  * Matches "file system"
+- `'\b'`
+  * Word boundary
+- `'\bsystem'`
+  * Matches "file system" and "file-system"
+
+### Quanitifiers
+- `'u*'`
+  * Matches `u` zero or more times
+- `'u?'`
+  * Matches `u` zero or once only (optional)
+- `'u+'`
+  * Matches one or more occurrences of `u`
+- `'u{3}'`
+  * Matches exactly three occurrences: `uuu`
+
 
 
 
