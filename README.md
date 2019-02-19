@@ -112,8 +112,19 @@ paranoia@paranoia:~$ ifconfig lo | awk -F" " '/TX/{ print toupper($3 $4 $5 $6 $7
   * Insert new line before the matched line
 - `sed ' /^Template/ a # Here is a comment' /etc/debconf.conf`
   * Appends a new line after the matched line
+- `$ sed ' { /^[F,f]ilename:/ i # The following line is the filename /^[D,d]river:/ d } ' /etc/debconf.conf`
+  * Multiple `expressions` may be used with sed by including brace brackets within the quoted sed instructions
 
-
+### sed - Code reuse
+```javascript
+$ cat ntp.sed
+/^server 0/ i ntp.example.com
+/^server\s[0-9]\.ubuntu/ d
+$ sed -f ntp.sed /etc/ntp.conf
+```
+  * To resuse sed expressions, use sed files
+  * The sed file can be referenced with the `-f` option
+  * Once we check the file behaves as expected we can implement the `-i` option
 
 ## GREP
 ```bash

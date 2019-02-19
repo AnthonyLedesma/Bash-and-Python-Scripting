@@ -3,6 +3,7 @@ __pycache__/
 .idea/
 venv/
 
+# Specific to the repository
 mandle.bmp
 palindrome_env/
 pipstuff/
