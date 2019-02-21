@@ -78,13 +78,46 @@ done
 
 ## AWK
 ```bash
-paranoia@paranoia:~$ ifconfig lo | awk -F" " '/TX/{ print toupper($3 $4 $5 $6 $7) }'
+$ ifconfig lo | awk -F" " '/TX/{ print toupper($3 $4 $5 $6 $7) }'
 77BYTES6543(6.5KB)
 0DROPPED0OVERRUNS0
 ```
 - `-F` => Flag to specify text delmiter
 - `/*/` => Create regex match
 - `{ print toupper($0) }` => Awk commands 
+
+```bash
+$ awk -F"," ' BEGIN {OFS=" => "} {  print toupper($1), tolower($2), $3 } END { print "Rows: " NR }' employees
+```
+- `-F","` - Sets input field seperator
+- `OFS=" => "` - Sets the default field seperator for output
+- ` BEGIN ... END ` - Expression runs a start, end once and containing commands once for each matching input
+- `$1, $2, $3` - Variables indicating field one, two, and three.
+- `NR` - Variable containing row count for document.
+
+### AWK example
+#### users.awk
+```bash
+BEGIN {
+	printf "%8s %11s\n","Username", "Login date"
+	print "==========================="
+}
+!(/Never logged in/ || /^Username/ || /^root/) {
+	count++
+	if( NF == 8 )
+		printf "%16s %2s %3s %4s\n", $1, $2, $3, $4
+	else
+		printf "%16s %2s %3s %4s\n", $1, $2, $3, $4
+}
+END { 
+	print "==========================="
+print " Total Number of Users Processed: ", count
+}
+```
+#### termnial
+```bash
+$ lastlog | awk -f users.awk
+```
 
 ## SED
 ### Using sed commands
@@ -115,6 +148,29 @@ paranoia@paranoia:~$ ifconfig lo | awk -F" " '/TX/{ print toupper($3 $4 $5 $6 $7
 - `$ sed ' { /^[F,f]ilename:/ i # The following line is the filename /^[D,d]river:/ d } ' /etc/debconf.conf`
   * Multiple `expressions` may be used with sed by including brace brackets within the quoted sed instructions
 
+### SED Substitution Groups
+```bash
+$ sed ' s@\([^,]*\),\([^,]*\)@\U\1,\L\2@ ' employees
+```
+`s@`
+- Substitution
+
+`\([^,]*\),\([^,]*\)`
+- Grouping defined with escaped parentheses
+- Group `1` and `2` are created
+
+`@\U\1,\L\2/@`
+- Replace string: upper cases first grouping
+- Insert comma and transform lowercase group two
+
+### SED and SSH
+```bash
+$ ssh -t user@server sudo -i.bak -f /tmp/ntp.sed
+```
+- `-t` - Assigns a TTY allowing for sudo password
+- `-i.bak` - creates backup with `.bak` extension
+- `-f /tmp/ntp.sed` - Sed file on remote server
+
 ### sed - Code reuse
 ```javascript
 $ cat ntp.sed
@@ -125,6 +181,14 @@ $ sed -f ntp.sed /etc/ntp.conf
   * To resuse sed expressions, use sed files
   * The sed file can be referenced with the `-f` option
   * Once we check the file behaves as expected we can implement the `-i` option
+
+## SCP
+```bash 
+$ scp ntp.sed user@192.168.1.1:/tmp/
+```
+- Secure copy
+  * `ntp.sed` - local path
+  * `:/tmp/` - remote path
 
 ## GREP
 ```bash
