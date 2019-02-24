@@ -96,6 +96,92 @@ $ awk -F"," ' BEGIN {OFS=" => "} {  print toupper($1), tolower($2), $3 } END { p
 - `NR` - Variable containing row count for document.
 
 ### AWK example
+#### 40K lines + access log - Using AWK to parse
+##### access.awk
+```bash 
+BEGIN { FS=" "; print "Unknown status codes:"; }
+{ if($9 == "404") FOF++}
+{ if($9 == "200") TOO++}
+{ if($9 == "206") TOX++}
+{ if($9 == "500") FOO++}
+{ if($9 == "304") TOF++}
+{ if($9 == "301") TON++}
+{ ip[$1]++ }
+{ if( $9 != "404" && $9 != "200" && $9 != "304" && $9 != "301" && $9 != "206" && $9 != "500" ) \
+printf "%-4s\n",$9}
+END {
+printf "\nKnown status code occurrences:\n\
+200: %-5s\n\
+206: %-5s\n\
+301: %-5s\n\
+304: %-5s\n\
+404: %-5s\n\
+500: %-5s\n\
+Together that is %-5s codes\n\
+Document contains %-5s codes leaving %s unknown codes\n\
+\n\
+Highest frequency access: (> 400)\n"\
+, TOO, TOX, TON, TOF, FOF, FOO, ( FOF + TOO + TOF + TON + FOO + TOX), NR, (NR - (FOF + TOO + TOF + TON + FOO + TOX));
+
+for (i in ip)
+{if(ip[i] >= 400) printf "%-15s has accessed %-5s times.\n", i, ip[i]}
+}
+```
+- `{ if(EXPRESSIONS) CMD; }` 
+  * If statment expressions contained in curly braces
+- `{ ip[$1]++ }` 
+  * Setting key for associative array as the value of field one, then incrementing the key value using `++`
+- ` printf "%-5s: %-10s", value1, value2; `
+  * Formatted print `%-5s` string with 5 characters & `%-10s` string with 10 characters
+  * Values passed after comma
+- `for (i in ip)...` 
+  * Nested for loop to iterate over associative array
+
+#### Output
+```bash
+Unknown status codes:
+405 
+405 
+405 
+405 
+405 
+501 
+405 
+
+Known status code occurrences:
+200: 39755
+206: 21   
+301: 85   
+304: 725  
+404: 3772 
+500: 14   
+Together that is 44372 codes
+Document contains 44379 codes leaving 7 unknown codes
+
+Highest frequency access: (> 400)
+213.150.254.81  has accessed 434   times.
+205.167.170.15  has accessed 13967 times.
+37.1.206.196    has accessed 438   times.
+84.112.161.41   has accessed 712   times.
+148.251.50.49   has accessed 1929  times.
+52.22.118.215   has accessed 734   times.
+```
+
+#### catalog xml awk parse
+```bash
+$ awk 'BEGIN { FS="[<>]"; RS="\n\n"; OFS=" "} $0 ~ search  {print $4 ": " $5, $8 ": " $9, $12 ": " $13 }' search="screw driver" catalog.xml
+```
+- `' '` - use half quote to begin awk command logic
+- `FS, RS and OFS` - Field seperator, Row seperator, and Output field seperator.
+- `$0` - Matched row
+- `~` - Initiates regex match on following token
+- `search` - This is an `awk` variable
+#### output
+```bash
+name: screw driver price: 10 stock: 200
+```
+
+
 #### users.awk
 ```bash
 BEGIN {
